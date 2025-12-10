@@ -1,6 +1,12 @@
 NEW_UID = 1000
 NEW_GID = 1000
 
+ifdef DOCKER
+  RUN_PREFIX := docker compose run --rm app
+else
+  RUN_PREFIX :=
+endif
+
 .SILENT: help
 all: help
 
@@ -48,9 +54,6 @@ spelling-fix: ## Fix spelling mistakes
 
 test: ## Runs automated tests
 	$(RUN_PREFIX) pytest --cov --cov-report=term --cov-report=xml
-
-type-check:
-	poetry run mypy
 
 check: lint type-check safety-check spelling-check test ## Runs all checks
 fix: lint-fix spelling-fix ## Runs all fixers
