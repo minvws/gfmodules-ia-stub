@@ -1,0 +1,37 @@
+## Local dev files
+.idea
+.venv
+.fleet
+node_modules
+env
+*.egg-info
+*.pytest_cache
+__pycache__
+*.swp
+*.pyc
+.coverage*
+!.coveragerc
+coverage.xml
+.DS_Store
+*.bak
+## Configuration and secrets
+secrets
+tests/secrets
+.npmrc
+clients.json
+login_methods.json
+!tests/resources/test_settings.json
+!tests/manifest.json
+!package.json
+!package-lock.json
+!lang/*.json
+!tests/clients.test.json
+
+*.crt
+*.key
+*.priv
+*.pub
+settings.json
+idp_metadata.xml
+app.conf
+version.json

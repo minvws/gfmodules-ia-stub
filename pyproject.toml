@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "ia-stub"
+version = "0.1.0"
+description = ""
+license = "EUPL-1.2"
+authors = ["Ministerie van Volksgezondheid, Welzijn en Sport"]
+readme = "README.md"
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+nl-irealisatie-max-core = {git = "git@github.com:minvws/irealisatie-max-core.git", branch="main"}
+python = ">=3.11,<3.12"
+inject = ">=5.3.0,<6.0.0"
+uvicorn = "^0.38.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.1"
+pytest-cov = "^7.0.0"
+ruff = "^0.14.4"
+codespell = "^2.2.6"
+pip-audit = "^2.9.0"
+mypy = "1.18.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+cache-dir = "~/.cache/ruff"
+include = ["pyproject.toml", "app/*.py", "tests/*.py"]
+
+[tool.mypy]
+files = "app,tests"
+python_version = "3.11"
+strict = true
+cache_dir = "~/.cache/mypy"
+ignore_missing_imports = true

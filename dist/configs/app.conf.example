@@ -1,0 +1,114 @@
+[app]
+# possible environment values: development | production
+environment = development
+# External URL for the app (no trailing slash)
+external_base_url = https://localhost:8006
+
+;loglevel =
+;login_methods_file_path =
+
+# Only used for HTML redirects (True, False)
+;redirect_html_delay =
+# possible values: http, html
+;redirect_type =
+
+# NaCl Symmetric encryption key used for encrypting the authentication cache
+# generate one with: openssl rand -hex 32
+user_authentication_sym_key = 0000000000000000000000000000000000000000000000000000000000000000
+
+# Default timeout for external HTTP requests
+;external_http_requests_timeout_seconds =
+
+# Path to translation file
+;language_path =
+
+# Include log messages in error response (True, False)
+;include_log_message_in_error_response =
+
+[cache]
+# possible values; redis, in_memory
+cache_driver = redis
+# TTL (in seconds) for cached objects and signed tokens
+;object_ttl =
+
+# Redis connection parameters
+redis_host = redis
+redis_port = 6379
+;redis_enable_debugger =
+
+# SSL settings (mostly production)
+;redis_ssl =
+;redis_key =
+;redis_cert =
+;redis_cafile =
+;redis_check_hostname = 
+
+# Optional Redis namespaces (mostly production)
+;redis_default_cache_namespace =
+;redis_token_namespace =
+;redis_refresh_token_namespace =
+;redis_subject_identifier_namespace =
+;redis_code_namespace =
+
+[jwe]
+jwe_sign_priv_key_path = secrets/nl-rdo-max-private.key
+jwe_sign_crt_path = secrets/nl-rdo-max-private.crt
+
+[oidc]
+certificates_directory = secrets/jwks-certs
+rsa_private_key = secrets/oidc/selfsigned.key
+rsa_private_key_crt = secrets/oidc/selfsigned.crt
+issuer = https://localhost:8006
+
+# Optional endpoints (default values used if not set)
+;authorize_endpoint =
+;jwks_endpoint =
+;accesstoken_endpoint =
+;userinfo_endpoint =
+
+;scopes_supported =
+;clients_file =
+subject_id_hash_salt = somesalt
+
+# Optional JWT settings (defaults used if not set)
+;jwt_expiration_duration =
+;jwt_nbf_lag =
+;allow_wildcard_redirect_uri =
+
+[saml]
+# Optional paths for SAML templates
+;identity_providers_base_path =
+;xml_templates_path =
+;html_templates_path =
+
+# Issuer for redirect SAML redirect responses
+base_issuer = localhost:8007
+
+;[ratelimiter]
+;identity_provider_outage_key =
+;primary_identity_provider_key =
+;overflow_identity_provider_key =
+;primary_identity_provider_user_limit_key =
+;overflow_identity_provider_user_limit_key =
+
+# Dev-friendly IP limits
+;ipaddress_max_count =
+;ipaddress_max_count_expire_seconds =
+
+[templates]
+# Optional template paths
+;jinja_path =
+;vite_manifest_path =
+
+# Default header and sidebar
+;header_template =
+;sidebar_template =
+;login_options_sidebar_template =
+
+;[auth_session]
+;enabled =
+;enforce_secure_cookie =
+# generate one with: openssl rand -hex 32
+;secret_key =
+;cache_ttl_seconds =
+;cookie_expiry_offset_seconds =
