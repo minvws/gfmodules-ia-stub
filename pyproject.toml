@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "ia-stub"
+package-mode = false
 version = "0.1.0"
 description = ""
 license = "EUPL-1.2"
 authors = ["Ministerie van Volksgezondheid, Welzijn en Sport"]
 readme = "README.md"
-packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
 nl-irealisatie-max-core = {git = "git@github.com:minvws/irealisatie-max-core.git", branch="main"}
@@ -35,3 +35,6 @@ python_version = "3.11"
 strict = true
 cache_dir = "~/.cache/mypy"
 ignore_missing_imports = true
+
+[tool.codespell]
+skip = "./secrets,./LICENSES,./saml,./static/img"
