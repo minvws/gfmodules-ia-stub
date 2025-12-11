@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   base: '',
@@ -8,6 +9,7 @@ export default defineConfig({
       input: {
         layout: resolve(__dirname, 'dist/resources', 'css', 'app.scss'),
         submit: resolve(__dirname, 'dist/resources', 'js', 'submit.js'),
+        mock_redirect: resolve(__dirname, 'dist/resources', 'js', 'mock_redirect.js'),
       },
     },
     outDir: '',
@@ -15,4 +17,22 @@ export default defineConfig({
     manifest: 'static/assets/manifest.json',
     emptyOutDir: false,
   },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: resolve(__dirname, 'node_modules','swagger-ui-dist','swagger-ui-bundle.js'),
+          dest: resolve(__dirname,'static','assets')
+        },
+        {
+          src: resolve(__dirname, 'node_modules','swagger-ui-dist','swagger-ui.css'),
+          dest: resolve(__dirname,'static','assets')
+        },
+        {
+          src: resolve(__dirname, 'node_modules','redoc','bundles','redoc.standalone.js'),
+          dest: resolve(__dirname,'static','assets')
+        }
+      ]
+    })
+  ]
 })

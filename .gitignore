@@ -35,3 +35,5 @@ settings.json
 idp_metadata.xml
 app.conf
 version.json
+uzi_data.json
+digid_mock_identities.json
