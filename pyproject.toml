@@ -16,10 +16,10 @@ uvicorn = "^0.38.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.1"
 pytest-cov = "^7.0.0"
-ruff = "^0.14.4"
+ruff = "^0.14.9"
 codespell = "^2.2.6"
 pip-audit = "^2.9.0"
-mypy = "1.18.2"
+mypy = "1.19.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
