@@ -24,7 +24,7 @@ risk and that the authors assume no liability for any consequences of its use.
 
 ## Enable SSH agent forwarding
 
-At this point, the MAX Core framework a git-type dependency, because is it not
+At this point, the MAX Core framework is a git-type dependency, because it is not
 yet available as a Python package. Installing this dependency in the Docker
 environment requires a SSH key for authentication. To enable this scenario,
 follow the steps below to automatically forward your local SSH agent if one is
