@@ -8,6 +8,8 @@ services:
         NEW_GID: ${GID:-1000}
       secrets:
         - npmrc
+      ssh:
+        - default
     volumes:
       - '.:/src'
       - '/src/node_modules'

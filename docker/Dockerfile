@@ -59,7 +59,10 @@ RUN --mount=type=secret,id=npmrc,target=${PROJECT_DIR}/.npmrc \
 
 # setup python environment
 COPY ./pyproject.toml ./poetry.lock ./poetry.toml ./
-RUN --mount=type=cache,target=${POETRY_CACHE_DIR} poetry install --no-interaction --no-root
+RUN --mount=type=cache,target=${POETRY_CACHE_DIR} \
+    --mount=type=ssh \
+    mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts && \
+    poetry install --no-interaction --no-root
 
 FROM base AS final
 
