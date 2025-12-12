@@ -59,10 +59,22 @@ RUN --mount=type=secret,id=npmrc,target=${PROJECT_DIR}/.npmrc \
 
 # setup python environment
 COPY ./pyproject.toml ./poetry.lock ./poetry.toml ./
-RUN --mount=type=cache,target=${POETRY_CACHE_DIR} \
-    --mount=type=ssh \
-    mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts && \
-    poetry install --no-interaction --no-root
+RUN --mount=type=ssh \
+    --mount=type=cache,target=${POETRY_CACHE_DIR} \
+    --mount=type=secret,id=github_token,required=false \
+    set -eux; \
+    mkdir -p ~/.ssh; \
+    chmod 0700 ~/.ssh; \
+    ssh-keyscan -H github.com >> ~/.ssh/known_hosts; \
+    if [ -s /run/secrets/github_token ]; then \
+        GITHUB_TOKEN="$(cat /run/secrets/github_token)"; \
+        git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "git@github.com:"; \
+        git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "ssh://git@github.com/"; \
+    fi; \
+    poetry install --no-interaction; \
+    if [ -s /run/secrets/github_token ]; then \
+        rm -f /root/.gitconfig; \
+    fi
 
 FROM base AS final
 
