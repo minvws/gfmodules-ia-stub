@@ -1,0 +1,80 @@
+{
+  "900022868": {
+    "initials": "R.M.A.",
+    "surname_prefix": "van",
+    "surname": "Laar",
+    "loa_authn": "http://eidas.europa.eu/LoA/high",
+    "loa_uzi": "http://eidas.europa.eu/LoA/high",
+    "uzi_id": "900022868",
+    "relations": [
+      {
+        "ura": "87654321",
+        "entity_name": "De Ziekenboeg",
+        "roles": [
+          "01.010"
+        ]
+      }
+    ]
+  },
+  "900000001": {
+    "initials": "K.",
+    "surname_prefix": "",
+    "surname": "Smith",
+    "loa_authn": "http://eidas.europa.eu/LoA/high",
+    "loa_uzi": "http://eidas.europa.eu/LoA/high",
+    "uzi_id": "900000009",
+    "relations": [
+      {
+        "ura": "87654321",
+        "entity_name": "De Ziekenboeg",
+        "roles": [
+          "01.022",
+          "01.041",
+          "01.047"
+        ]
+      }
+    ]
+  },
+  "999991772": {
+    "initials": "A.B.",
+    "surname_prefix": "",
+    "surname": "Houtbeek",
+    "loa_authn": "http://eidas.europa.eu/LoA/high",
+    "loa_uzi": "http://eidas.europa.eu/LoA/high",
+    "uzi_id": "900000010",
+    "relations": [
+      {
+        "ura": "87654321",
+        "entity_name": "De Ziekenboeg",
+        "roles": [
+          "02.054"
+        ]
+      },
+      {
+        "ura": "65432189",
+        "entity_name": "Tandartspraktijk Houtbeek",
+        "roles": [
+          "02.000",
+          "02.053"
+        ]
+      }
+    ]
+  },
+  "982823046": {
+    "initials": "S.H.",
+    "surname_prefix": "van der",
+    "surname": "Meer",
+    "loa_authn": "http://eidas.europa.eu/LoA/high",
+    "loa_uzi": "http://eidas.europa.eu/LoA/high",
+    "uzi_id": "900000011",
+    "relations": [
+      {
+        "ura": "65432189",
+        "entity_name": "Tandartspraktijk Houtbeek",
+        "roles": [
+          "92.000"
+        ]
+      }
+    ]
+  }
+}

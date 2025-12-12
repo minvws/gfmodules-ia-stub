@@ -1,0 +1,22 @@
+[
+  {
+    "name": "René van Laar",
+    "description": "Werkzaam bij 'De Ziekenboeg' als cardioloog.",
+    "bsn": "900022868"
+  },
+  {
+    "name": "Keira Smith",
+    "description": "Werkzaam bij 'De Ziekenboeg' als klinisch geriater, reumatoloog en specialist ouderengeneeskunde.",
+    "bsn": "900000001"
+  },
+  {
+    "name": "Anna Houtbeek",
+    "description": "Werkzaam bij 'De Ziekenboeg' als tandarts. Ook werkzaam bij 'Tandartspraktijk Houtbeek' als tandarts en orthodontist.",
+    "bsn": "999991772"
+  },
+  {
+    "name": "Sander van der Meer",
+    "description": "Werkt bij 'Tandartspraktijk Houtbeek' als mondhygiënist",
+    "bsn": "982823046"
+  }
+]

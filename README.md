@@ -22,6 +22,27 @@ The code examples are only meant to help understand concepts and demonstrate pos
 By using or referencing this code, you acknowledge that you do so at your own
 risk and that the authors assume no liability for any consequences of its use.
 
+## Enable SSH agent forwarding
+
+At this point, the MAX Core framework is a git-type dependency, because it is not
+yet available as a Python package. Installing this dependency in the Docker
+environment requires a SSH key for authentication. To enable this scenario,
+follow the steps below to automatically forward your local SSH agent if one is
+running.
+
+```sh
+# Example:
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519   # or your key path
+ssh-add -l                  # verify key is loaded
+```
+
+Note that on macOS, the above `eval` command is not needed. Just make sure to
+add the key to your path, every time the host machine is restarted.
+
+Further information can be found in the
+[VS Code docs](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials).
+
 ## Contribution
 
 As stated in the [Disclaimer](#disclaimer) this project and all associated code serve solely as documentation and

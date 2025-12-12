@@ -4,6 +4,9 @@ environment = development
 # External URL for the app (no trailing slash)
 external_base_url = https://localhost:8006
 
+mocked_uzi_data_file_path = uzi_data.json
+mocked_identities_file_path = digid_mock_identities.json
+
 ;loglevel =
 ;login_methods_file_path =
 
@@ -33,7 +36,7 @@ cache_driver = redis
 
 # Redis connection parameters
 redis_host = redis
-redis_port = 6379
+redis_port = 16379
 ;redis_enable_debugger =
 
 # SSL settings (mostly production)
@@ -112,3 +115,16 @@ base_issuer = localhost:8007
 ;secret_key =
 ;cache_ttl_seconds =
 ;cookie_expiry_offset_seconds =
+
+[uvicorn]
+host = 0.0.0.0
+port = 8006
+reload = True
+use_ssl = True
+reload_includes = *.conf
+base_dir = secrets/ssl
+cert_file = server.crt
+key_file = server.key
+
+[swagger]
+enabled = True

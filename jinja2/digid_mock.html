@@ -1,0 +1,25 @@
+{% extends layout %}
+{% block head %}
+    <script src="{{ vite_asset('dist/resources/js/mock_redirect.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <section class="background-color-offset auth centered">
+        <div id="identities">
+            <h1>Kies een testidentiteit</h1>
+            <div class="tiles column-2">
+                {% for identity in identities %}
+                <div role="group">
+                    <h1>{{ identity["name"] }}</h1>
+                    <p>{{ identity["description"] }}</p>
+                    <form class="inline" id="identity-{{ identity["bsn"] }}" method="GET" action="digid-mock-catch">
+                    <input hidden type="text" value="{{ identity["bsn"] }}" name="bsn" id="bsn-{{ identity["bsn"] }}">
+                    <input type="hidden" name="SAMLart" value="{{ artifact }}">
+                    <input type="hidden" name="RelayState" value="{{ relay_state }}">
+                    <input name="submit" type="Submit" value="Log in met deze identiteit" id="{{ identity["bsn"] }}-submit" class="ghost">
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -37,4 +37,7 @@ cache_dir = "~/.cache/mypy"
 ignore_missing_imports = true
 
 [tool.codespell]
-skip = "./secrets,./LICENSES,./saml,./static/img"
+skip = "*"
+check-filenames = true
+check-hidden = false
+uri-ignore-words-list = "*"
