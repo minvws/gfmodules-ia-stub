@@ -11,7 +11,7 @@ ARG PROJECT_DIR="/src" \
     NEW_UID=1000 \
     NEW_GID=1000 \
     INSTALL_NPM_ASSETS=true
-    
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     POETRY_CACHE_DIR=/tmp/poetry-cache \
@@ -59,7 +59,24 @@ RUN --mount=type=secret,id=npmrc,target=${PROJECT_DIR}/.npmrc \
 
 # setup python environment
 COPY ./pyproject.toml ./poetry.lock ./poetry.toml ./
-RUN --mount=type=cache,target=${POETRY_CACHE_DIR} poetry install --no-interaction --no-root
+
+# Install python packages
+RUN --mount=type=ssh \
+    --mount=type=cache,target=${POETRY_CACHE_DIR} \
+    --mount=type=secret,id=GITHUB_TOKEN,required=false \
+    if [ -s /run/secrets/GITHUB_TOKEN ]; then \
+        echo "HTTPS route is taken (GitHub Actions with token)"; \
+        token=$(cat /run/secrets/GITHUB_TOKEN); \
+        git config --global url."https://${token}@github.com/".insteadOf "git@github.com:"; \
+        git config --global url."https://${token}@github.com/".insteadOf "ssh://git@github.com/"; \
+        poetry install --no-interaction; \
+        rm -f /root/.gitconfig; \
+    else \
+        echo "SSH config enabled"; \
+        mkdir -p ~/.ssh; \
+        ssh-keyscan -H github.com >> ~/.ssh/known_hosts; \
+        poetry install --no-interaction; \
+    fi
 
 FROM base AS final
 
