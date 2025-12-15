@@ -19,7 +19,7 @@ pytest-cov = "^7.0.0"
 ruff = "^0.14.9"
 codespell = "^2.2.6"
 pip-audit = "^2.9.0"
-mypy = "1.19.0"
+mypy = "1.19.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
