@@ -5,7 +5,7 @@ from max_core.config.schemas import AppConfig as CoreAppConfig
 
 
 class AppConfig(CoreAppConfig):
-    version_file_path: str = Field(default="version.json")
+    version_file_path: str = Field(default="static/version.json")
     mocked_uzi_data_file_path: str = Field(default="uzi_data.json")
     mocked_identities_file_path: str = Field(default="digid_mock_identities.json")
 

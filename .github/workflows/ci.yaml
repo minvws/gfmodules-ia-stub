@@ -205,7 +205,7 @@ jobs:
                 echo "PKG_NAME=`basename $GITHUB_REPOSITORY -private`" >> $GITHUB_ENV
 
             - name: Add version file
-              run: 'echo "{ \"version\": \"${{ env.RELEASE_VERSION }}\", \"git_ref\": \"$GITHUB_SHA\"}" > version.json'
+              run: 'echo "{ \"version\": \"${{ env.RELEASE_VERSION }}\", \"git_ref\": \"$GITHUB_SHA\"}" > static/version.json'
 
             - name: Create npmrc
               run: |

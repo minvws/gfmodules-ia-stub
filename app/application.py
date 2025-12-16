@@ -12,6 +12,8 @@ from app.bindings import AppBindings
 from app.config.schemas import Config, UvicornConfig
 from app.docs import init_docs_module
 from app.utils import load_config
+from app.routers.default import router as default_router
+from app.routers.health import router as health_router
 
 
 def kwargs_from_config(config: UvicornConfig) -> Dict[str, Any]:
@@ -74,6 +76,8 @@ def create_app(config: Config) -> FastAPI:
 
     setup_max_core(app, config)
     init_docs_module(app)
+    app.include_router(default_router)
+    app.include_router(health_router)
 
     return app
 

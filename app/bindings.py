@@ -18,6 +18,7 @@ class AppBindings:
     def __call__(self, binder: Binder) -> None:
         binder.install(MaxCoreBindings(self.__config))
 
+        binder.bind(Config, self.__config)
         binder.bind(Logger, getLogger())
         binder.install(DocsBindings(self.__config.swagger))
         
