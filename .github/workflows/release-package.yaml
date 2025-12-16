@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Add version file
-        run: 'echo "{ \"version\": \"${{ env.RELEASE_VERSION }}\", \"git_ref\": \"$GITHUB_SHA\"}" > version.json'
+        run: 'echo "{ \"version\": \"${{ env.RELEASE_VERSION }}\", \"git_ref\": \"$GITHUB_SHA\"}" > static/version.json'
 
       - name: Install Node.js
         uses: actions/setup-node@v6
