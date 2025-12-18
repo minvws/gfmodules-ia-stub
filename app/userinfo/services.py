@@ -1,4 +1,5 @@
 import time
+from uuid import uuid4
 
 from inject import autoparams
 from max_core.models.auth_session import AuthSession
@@ -8,38 +9,29 @@ from max_core.models.userinfo import Userinfo
 from max_core.services.auth_session.auth_session_encrypter import AuthSessionEncrypter
 from max_core.services.userinfo.userinfo_service import UserinfoService
 from max_core.storage.auth_session_cache import AuthSessionCache
-from max_core.misc.utils import strip_cert
 from max_core.services.client_repository import ClientRepository
-from max_core.services.encryption.rsa_jwe_service import RSAJweService
 
-from app.schemas import UserinfoUziDTO
-from app.utils import mocked_bsn_to_uzi_data
+from app.schemas import DeziAttributes
+from app.services.encryption.rsa_jwe_service import RSAJweService
+from app.utils import mocked_bsn_to_dezi_data
 
 
 class UserinfoProvider:
     @autoparams("auth_session_cache", "auth_session_encrypter")
     def __init__(
         self,
-        mocked_uzi_data_file_path: str,
+        mocked_dezi_data_file_path: str,
         auth_session_cache: AuthSessionCache,
         auth_session_encrypter: AuthSessionEncrypter,
     ) -> None:
-        self._mocked_uzi_data_file_path = mocked_uzi_data_file_path
-        self.__auth_session_cache = auth_session_cache
-        self.__auth_session_encrypter = auth_session_encrypter
-    def exchange_bsn(self, bsn: str, auth_session_id: str) -> UserinfoUziDTO:
+        self._mocked_dezi_data_file_path = mocked_dezi_data_file_path
 
-        uzi_data = mocked_bsn_to_uzi_data(bsn, self._mocked_uzi_data_file_path)
+    def exchange_bsn(self, bsn: str) -> DeziAttributes:
 
-        self.__auth_session_cache.set(
-            auth_session_id,
-            {
-                "data": uzi_data.model_dump(),
-            },
-        )
-        return UserinfoUziDTO(
-            sub=self.__auth_session_encrypter.encrypt(auth_session_id),
-            **uzi_data.model_dump(),
+        dezi_data = mocked_bsn_to_dezi_data(bsn, self._mocked_dezi_data_file_path)
+
+        return DeziAttributes(
+            **dezi_data.model_dump(),
         )
 
 
@@ -75,21 +67,19 @@ class IAUserinfoService(UserinfoService):
 
         bsn = artifact_response.get_bsn(authorization_by_proxy=False)
         
-        userinfo = self._userinfo_provider.exchange_bsn(bsn, authentication_context.session_id)
-
-        loa_authn = artifact_response.loa_authn
+        userinfo = self._userinfo_provider.exchange_bsn(bsn)
 
         jwe = self._jwe_service.to_jwe(
             {
                 **userinfo.model_dump(),
-                "session_id": authentication_context.session_id,
-                "loa_authn": loa_authn,
+                "jti": str(uuid4()),
+                "iat": int(time.time()) - self._jwt_nbf_lag,
+                "exp": int(time.time()) + self._jwt_expiration_duration,
                 "iss": self._req_issuer,
                 "sub": subject_identifier,
                 "aud": client_id,
-                "nbf": int(time.time()) - self._jwt_nbf_lag,
-                "exp": int(time.time()) + self._jwt_expiration_duration,
-                "x5c": strip_cert(pubkey_content),
+                "loa_authn": "http://eidas.europa.eu/LoA/high",
+                "json_schema": "https://example.com",
             },
             pubkey_content,
         )

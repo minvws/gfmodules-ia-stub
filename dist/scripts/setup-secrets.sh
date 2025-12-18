@@ -80,6 +80,16 @@ if [[ ! -f $SECRETS_DIR/clients/test_client/test_client.pub ]]; then
 fi
 
 ###
+# mock Dezi declaration certificate generation
+###
+if [[ ! -f $SECRETS_DIR/dezi_mock.pub ]]; then
+  mkdir -p $SECRETS_DIR
+  create_key_pair $SECRETS_DIR "dezi_mock_declaration_sign" "dezi-mock"
+  cp $SECRETS_DIR/dezi_mock_declaration_sign.crt $SECRETS_DIR/jwks-certs/
+
+fi
+
+###
 # saml tvs
 ###
 if [[ ! -f $SAML_DIR/tvs/certs/sp.crt ]]; then

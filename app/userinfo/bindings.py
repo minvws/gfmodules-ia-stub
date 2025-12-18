@@ -11,7 +11,7 @@ class UserinfoBindings:
 
         binder.bind_to_constructor(
             UserinfoProvider,
-            lambda: UserinfoProvider(config.app.mocked_uzi_data_file_path)
+            lambda: UserinfoProvider(config.app.mocked_dezi_data_file_path)
         )
 
         binder.bind_to_constructor(

@@ -2303,7 +2303,7 @@ name = "uvicorn"
 version = "0.40.0"
 description = "The lightning-fast ASGI server."
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
     {file = "uvicorn-0.40.0-py3-none-any.whl", hash = "sha256:c6c8f55bc8bf13eb6fa9ff87ad62308bbbc33d0b67f84293151efe87e0d5f2ee"},

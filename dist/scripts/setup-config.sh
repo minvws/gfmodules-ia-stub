@@ -23,5 +23,5 @@ copy_example_config "clients.json" dist/configs
 copy_example_config "settings.json" saml/tvs saml/tvs
 copy_example_config "login_methods.json" dist/configs
 copy_example_config "version.json" "static" "static"
-copy_example_config "uzi_data.json" dist/configs
+copy_example_config "dezi_data.json" dist/configs
 copy_example_config "digid_mock_identities.json" dist/configs

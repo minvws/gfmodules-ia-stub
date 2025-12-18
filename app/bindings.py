@@ -8,6 +8,7 @@ from app.config.schemas import Config
 from app.docs.bindings import DocsBindings
 from max_core.providers.digid_mock_provider import DigidMockProvider as maxDigidMockProvider
 from app.providers.digid_mock_provider import DigidMockProvider
+from app.services.encryption.rsa_jwe_service import RSAJweService
 from app.userinfo.bindings import UserinfoBindings
 from app.utils import json_from_file
 
@@ -16,6 +17,13 @@ class AppBindings:
         self.__config = config
 
     def __call__(self, binder: Binder) -> None:
+        binder.bind_to_constructor(
+            RSAJweService,
+            lambda: RSAJweService(
+                jwe_sign_priv_key_path=self.__config.jwe.jwe_sign_priv_key_path,
+                jwe_sign_crt_path=self.__config.jwe.jwe_sign_crt_path,
+            ),
+        )
         binder.install(MaxCoreBindings(self.__config))
 
         binder.bind(Config, self.__config)
@@ -24,5 +32,7 @@ class AppBindings:
         
         identities = json_from_file(self.__config.app.mocked_identities_file_path)
         binder.bind_to_constructor(maxDigidMockProvider, lambda: DigidMockProvider(identities))
+
+            
         
         UserinfoBindings.bind_bsn_userinfo_service(self.__config, binder)
