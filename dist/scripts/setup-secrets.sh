@@ -22,7 +22,6 @@ create_key_pair () {
   rm $1/$2.csr
 }
 
-mkdir -p ./$SECRETS_DIR/userinfo
 mkdir -p ./$SECRETS_DIR/oidc
 mkdir -p ./$SECRETS_DIR/ssl
 mkdir -p ./$SECRETS_DIR/clients
@@ -64,29 +63,11 @@ if [[ ! -f $SECRETS_DIR/oidc/selfsigned.crt ]]; then
 fi
 
 ###
-# userinfo JWT signing
-###
-if [[ ! -f $SECRETS_DIR/userinfo/jwe_sign.crt ]]; then
-  create_key_pair $SECRETS_DIR/userinfo "jwe_sign" "max-jwe"
-  cp $SECRETS_DIR/userinfo/jwe_sign.crt $SECRETS_DIR/jwks-certs/
-fi
-
-###
 # Local client certificate generation
 ###
 if [[ ! -f $SECRETS_DIR/clients/test_client/test_client.pub ]]; then
   mkdir -p $SECRETS_DIR/clients/test_client
   create_key_pair $SECRETS_DIR/clients/test_client "test_client" "max-test-client"
-fi
-
-###
-# mock Dezi declaration certificate generation
-###
-if [[ ! -f $SECRETS_DIR/dezi_mock.pub ]]; then
-  mkdir -p $SECRETS_DIR
-  create_key_pair $SECRETS_DIR "dezi_mock_declaration_sign" "dezi-mock"
-  cp $SECRETS_DIR/dezi_mock_declaration_sign.crt $SECRETS_DIR/jwks-certs/
-
 fi
 
 ###

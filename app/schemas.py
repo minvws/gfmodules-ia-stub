@@ -1,11 +1,13 @@
 from pydantic import BaseModel
 
-class DeclarationPayload(BaseModel):
+class DeclarationPayloadDynamic(BaseModel):
     jti: str
     iss: str
     exp: int
     nbf: int
     json_schema: str
+
+class DeclarationPayloadStatic(BaseModel):
     loa_dezi: str
     verklaring_id: str
     dezi_nummer: str
@@ -25,7 +27,27 @@ class DeclarationHeader(BaseModel):
     jku: str
     typ: str
 
-class DeziAttributes(BaseModel):
-    verklaring_id: str
-    verklaring: str
+class EnvelopeJWEHeader(BaseModel):
+    alg: str
+    enc: str
+    kid: str
+    typ: str
+    cty: str
 
+class EnvelopeJWTHeader(BaseModel):
+    alg: str
+    kid: str
+    typ: str
+    cty: str
+
+class EnvelopeJWTPayload(BaseModel):
+    jti: str
+    iat: int
+    exp: int
+    iss: str
+    aud: str
+    sub: str # TODO FIXME THIS WAS NOT IN THE SPECS, BUT COULD NOT BE LEFT OUT
+    loa_authn: str
+    json_schema: str
+    verklaring: str
+    verklaring_id: str

@@ -44,7 +44,7 @@ type-check: ## Check for typing errors
 	$(RUN_PREFIX) mypy
 
 safety-check: ## Check for security vulnerabilities | FIXME: These vulnerabilities exist in max-core
-	$(RUN_PREFIX) pip-audit --ignore-vuln CVE-2025-54121 --ignore-vuln CVE-2025-62727
+	$(RUN_PREFIX) pip-audit --ignore-vuln CVE-2026-24486
 
 spelling-check: ## Check spelling mistakes
 	$(RUN_PREFIX) codespell .

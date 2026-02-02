@@ -8,8 +8,6 @@ class AppConfig(CoreAppConfig):
     version_file_path: str = Field(default="static/version.json")
     mocked_dezi_data_file_path: str = Field(default="dezi_data.json")
     mocked_identities_file_path: str = Field(default="digid_mock_identities.json")
-    mocked_declaration_signing_key_path: str = Field(default="secrets/dezi_mock_declaration_sign.key")
-    mocked_declaration_signing_cert_path: str = Field(default="secrets/dezi_mock_declaration_sign.crt")
 
 class UvicornConfig(BaseModel):
     host: str

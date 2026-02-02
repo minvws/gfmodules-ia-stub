@@ -1,4 +1,3 @@
-import time
 from uuid import uuid4
 
 from inject import autoparams
@@ -11,8 +10,9 @@ from max_core.services.userinfo.userinfo_service import UserinfoService
 from max_core.storage.auth_session_cache import AuthSessionCache
 from max_core.services.client_repository import ClientRepository
 
-from app.schemas import DeziAttributes
-from app.services.encryption.rsa_jwe_service import RSAJweService
+from app.schemas import DeclarationPayloadStatic
+from app.services.encryption.declaration_jwt_service import DeclarationJWTService
+from app.services.encryption.envelope_jwt_service import EnvelopeJWTService
 from app.utils import mocked_bsn_to_dezi_data
 
 
@@ -26,33 +26,26 @@ class UserinfoProvider:
     ) -> None:
         self._mocked_dezi_data_file_path = mocked_dezi_data_file_path
 
-    def exchange_bsn(self, bsn: str) -> DeziAttributes:
+    def exchange_bsn(self, bsn: str) -> DeclarationPayloadStatic:
+        data = mocked_bsn_to_dezi_data(bsn, self._mocked_dezi_data_file_path)
+        return DeclarationPayloadStatic(**data, verklaring_id=str(uuid4()))
 
-        dezi_data = mocked_bsn_to_dezi_data(bsn, self._mocked_dezi_data_file_path)
-
-        return DeziAttributes(
-            **dezi_data.model_dump(),
-        )
 
 
 class IAUserinfoService(UserinfoService):
     CONTENT_TYPE = "application/jwt"
 
-    @autoparams("jwe_service", "client_repository")
+    @autoparams("client_repository")
     def __init__(
         self,
-        req_issuer: str,
-        jwt_expiration_duration: int,
-        jwt_nbf_lag: int,
-        jwe_service: RSAJweService,
         client_repository: ClientRepository,
         userinfo_provider: UserinfoProvider,
+        declaration_jwt_service: DeclarationJWTService,
+        envelope_jwt_service: EnvelopeJWTService,
     ):
-        self._jwe_service = jwe_service
+        self._declaration_jwt_service = declaration_jwt_service
+        self._envelope_jwt_service = envelope_jwt_service
         self._client_repository = client_repository
-        self._req_issuer = req_issuer
-        self._jwt_expiration_duration = jwt_expiration_duration
-        self._jwt_nbf_lag = jwt_nbf_lag
         self._userinfo_provider = userinfo_provider
 
     def request_userinfo_for_saml_artifact(
@@ -63,25 +56,18 @@ class IAUserinfoService(UserinfoService):
     ) -> Userinfo:
         client_id = authentication_context.authorization_request["client_id"]
         client = self._client_repository.get_by_id(client_id)
-        pubkey_content = client.get_public_key_jwk().export_to_pem().decode("utf-8")
+        pubkey_content = client.certificate
 
         bsn = artifact_response.get_bsn(authorization_by_proxy=False)
         
-        userinfo = self._userinfo_provider.exchange_bsn(bsn)
-
-        jwe = self._jwe_service.to_jwe(
-            {
-                **userinfo.model_dump(),
-                "jti": str(uuid4()),
-                "iat": int(time.time()) - self._jwt_nbf_lag,
-                "exp": int(time.time()) + self._jwt_expiration_duration,
-                "iss": self._req_issuer,
-                "sub": subject_identifier,
-                "aud": client_id,
-                "loa_authn": "http://eidas.europa.eu/LoA/high",
-                "json_schema": "https://example.com",
-            },
-            pubkey_content,
+        dezi_payload_static = self._userinfo_provider.exchange_bsn(bsn)
+        declaration_jwt = self._declaration_jwt_service.create_jwt(dezi_payload_static)
+        jwe = self._envelope_jwt_service.create_jwe(
+            aud=client_id,
+            declaration=declaration_jwt,
+            encryption_certificate=pubkey_content,
+            declaration_id=dezi_payload_static.verklaring_id,
+            sub=subject_identifier,
         )
 
         return Userinfo(body=jwe, content_type=self.CONTENT_TYPE, auth_session_id=None)
