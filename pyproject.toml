@@ -16,7 +16,7 @@ uvicorn = "^0.40.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.1"
 pytest-cov = "^7.0.0"
-ruff = "^0.14.13"
+ruff = "^0.14.14"
 codespell = "^2.2.6"
 pip-audit = "^2.9.0"
 mypy = "1.19.1"
