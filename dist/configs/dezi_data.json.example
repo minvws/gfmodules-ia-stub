@@ -1,0 +1,54 @@
+{
+  "900022868": {
+    "voorletters": "R.M.A.",
+    "voorvoegsel": "van",
+    "achternaam": "Laar",
+    "loa_dezi": "http://eidas.europa.eu/LoA/high",
+    "dezi_nummer": "900000008",
+    "abonnee_nummer": "87654321",
+    "abonnee_naam": "De Ziekenboeg",
+    "rol_code": "01.010",
+    "rol_naam": "Cardioloog",
+    "rol_code_bron": "https://example.com",
+    "status_uri": "https://example.com"
+  },
+  "900000001": {
+    "voorletters": "K.",
+    "voorvoegsel": "",
+    "achternaam": "Smith",
+    "loa_dezi": "http://eidas.europa.eu/LoA/high",
+    "dezi_nummer": "900000009",
+    "abonnee_nummer": "87654321",
+    "abonnee_naam": "De Ziekenboeg",
+    "rol_code": "01.022",
+    "rol_naam": "Klinisch geriater",
+    "rol_code_bron": "https://example.com",
+    "status_uri": "https://example.com"
+  },
+  "999991772": {
+    "voorletters": "A.B.",
+    "voorvoegsel": "",
+    "achternaam": "Houtbeek",
+    "loa_dezi": "http://eidas.europa.eu/LoA/high",
+    "dezi_nummer": "900000010",
+    "abonnee_nummer": "87654321",
+    "abonnee_naam": "De Ziekenboeg",
+    "rol_code": "02.054",
+    "rol_naam": "Tandarts",
+    "rol_code_bron": "https://example.com",
+    "status_uri": "https://example.com"
+  },
+  "982823046": {
+    "voorletters": "S.H.",
+    "voorvoegsel": "van der",
+    "achternaam": "Meer",
+    "loa_dezi": "http://eidas.europa.eu/LoA/high",
+    "dezi_nummer": "900000011",
+    "abonnee_nummer": "65432189",
+    "abonnee_naam": "Tandartspraktijk Houtbeek",
+    "rol_code": "92.000",
+    "rol_naam": "Mondhygiënist",
+    "rol_code_bron": "https://example.com",
+    "status_uri": "https://example.com"
+  }
+}

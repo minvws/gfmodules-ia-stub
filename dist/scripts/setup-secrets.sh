@@ -22,7 +22,6 @@ create_key_pair () {
   rm $1/$2.csr
 }
 
-mkdir -p ./$SECRETS_DIR/userinfo
 mkdir -p ./$SECRETS_DIR/oidc
 mkdir -p ./$SECRETS_DIR/ssl
 mkdir -p ./$SECRETS_DIR/clients
@@ -61,14 +60,6 @@ fi
 if [[ ! -f $SECRETS_DIR/oidc/selfsigned.crt ]]; then
   create_key_pair $SECRETS_DIR/oidc "selfsigned" "oidc_sign"
   cp $SECRETS_DIR/oidc/selfsigned.crt $SECRETS_DIR/jwks-certs/
-fi
-
-###
-# userinfo JWT signing
-###
-if [[ ! -f $SECRETS_DIR/userinfo/jwe_sign.crt ]]; then
-  create_key_pair $SECRETS_DIR/userinfo "jwe_sign" "max-jwe"
-  cp $SECRETS_DIR/userinfo/jwe_sign.crt $SECRETS_DIR/jwks-certs/
 fi
 
 ###

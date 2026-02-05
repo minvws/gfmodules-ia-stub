@@ -1,21 +1,53 @@
-from typing import List
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
-class Relation(BaseModel):
-    ura: str
-    entity_name: str
-    roles: List[str]
+class DeclarationPayloadDynamic(BaseModel):
+    jti: str
+    iss: str
+    exp: int
+    nbf: int
+    json_schema: str
 
+class DeclarationPayloadStatic(BaseModel):
+    loa_dezi: str
+    verklaring_id: str
+    dezi_nummer: str
+    voorletters: str
+    voorvoegsel: str
+    achternaam: str
+    abonnee_nummer: str
+    abonnee_naam: str
+    rol_code: str
+    rol_naam: str
+    rol_code_bron: str
+    status_uri: str
 
-class UziAttributes(BaseModel):
-    initials: str
-    surname_prefix: str
-    surname: str
+class DeclarationHeader(BaseModel):
+    alg: str
+    kid: str
+    jku: str
+    typ: str
+
+class EnvelopeJWEHeader(BaseModel):
+    alg: str
+    enc: str
+    kid: str
+    typ: str
+    cty: str
+
+class EnvelopeJWTHeader(BaseModel):
+    alg: str
+    kid: str
+    typ: str
+    cty: str
+
+class EnvelopeJWTPayload(BaseModel):
+    jti: str
+    iat: int
+    exp: int
+    iss: str
+    aud: str
+    sub: str
     loa_authn: str
-    loa_uzi: str
-    uzi_id: str
-    relations: List[Relation]
-
-class UserinfoUziDTO(UziAttributes):
-    sub: str = Field(description="Subject identifier containing the auth session id.")
-
+    json_schema: str
+    verklaring: str
+    verklaring_id: str
