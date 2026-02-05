@@ -31,7 +31,6 @@ class AppBindings:
                 loa_authn="http://eidas.europa.eu/LoA/high",
             ),
         )
-        base_url = self.__config.app.external_base_url or "https://localhost:8006"
         binder.bind_to_constructor(
             DeclarationJWTService,
             lambda: DeclarationJWTService(
@@ -42,7 +41,7 @@ class AppBindings:
                 ),
                 exp_margin=self.__config.oidc.jwt_expiration_duration,
                 json_schema="https://example.com",
-                jku=base_url + self.__config.oidc.jwks_endpoint,
+                jku=self.__config.app.external_base_url + self.__config.oidc.jwks_endpoint,
             ),
         )
         binder.install(MaxCoreBindings(self.__config))

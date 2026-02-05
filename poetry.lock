@@ -1357,13 +1357,13 @@ inject = ">=5.2,<6.0"
 jinja2 = ">=3.1.6,<4.0.0"
 jwcrypto = ">=1.5.6,<2.0.0"
 lxml = "6.0.2"
-packaging = ">=25.0,<26.0"
+packaging = ">=25.0,<27.0"
 pip-audit = "^2.10.0"
 pynacl = ">=1.5.0,<2.0.0"
 pyop = ">=3.4.1"
 pyopenssl = ">=25.0.0,<26.0.0"
 python-dateutil = ">=2.9.0.post0,<3.0.0"
-python-multipart = ">=0.0.20,<0.0.22"
+python-multipart = ">=0.0.20,<0.0.23"
 python3-saml = "1.16.0"
 redis = ">=6.0.0,<7.0.0"
 xmlsec = "1.3.17"
@@ -1372,7 +1372,7 @@ xmlsec = "1.3.17"
 type = "git"
 url = "ssh://git@github.com/minvws/irealisatie-max-core.git"
 reference = "main"
-resolved_reference = "49d8facaca3a418aeab1d37f45b6ec73336c36a2"
+resolved_reference = "b85a932461904242780d67f01d3ad9c97c9b8f58"
 
 [[package]]
 name = "oic"
@@ -2026,14 +2026,14 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "python-multipart"
-version = "0.0.21"
+version = "0.0.22"
 description = "A streaming multipart parser for Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "python_multipart-0.0.21-py3-none-any.whl", hash = "sha256:cf7a6713e01c87aa35387f4774e812c4361150938d20d232800f75ffcf266090"},
-    {file = "python_multipart-0.0.21.tar.gz", hash = "sha256:7137ebd4d3bbf70ea1622998f902b97a29434a9e8dc40eb203bbcf7c2a2cba92"},
+    {file = "python_multipart-0.0.22-py3-none-any.whl", hash = "sha256:2b2cd894c83d21bf49d702499531c7bafd057d730c201782048f7945d82de155"},
+    {file = "python_multipart-0.0.22.tar.gz", hash = "sha256:7340bef99a7e0032613f56dc36027b959fd3b30a787ed62d310e951f7c3a3a58"},
 ]
 
 [[package]]

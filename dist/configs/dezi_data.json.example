@@ -10,7 +10,7 @@
     "rol_code": "01.010",
     "rol_naam": "Cardioloog",
     "rol_code_bron": "https://example.com",
-    "revocatie_controle_uri": "https://example.com"
+    "status_uri": "https://example.com"
   },
   "900000001": {
     "voorletters": "K.",
@@ -23,7 +23,7 @@
     "rol_code": "01.022",
     "rol_naam": "Klinisch geriater",
     "rol_code_bron": "https://example.com",
-    "revocatie_controle_uri": "https://example.com"
+    "status_uri": "https://example.com"
   },
   "999991772": {
     "voorletters": "A.B.",
@@ -36,7 +36,7 @@
     "rol_code": "02.054",
     "rol_naam": "Tandarts",
     "rol_code_bron": "https://example.com",
-    "revocatie_controle_uri": "https://example.com"
+    "status_uri": "https://example.com"
   },
   "982823046": {
     "voorletters": "S.H.",
@@ -49,6 +49,6 @@
     "rol_code": "92.000",
     "rol_naam": "Mondhygiënist",
     "rol_code_bron": "https://example.com",
-    "revocatie_controle_uri": "https://example.com"
+    "status_uri": "https://example.com"
   }
 }

@@ -56,7 +56,6 @@ class IAUserinfoService(UserinfoService):
     ) -> Userinfo:
         client_id = authentication_context.authorization_request["client_id"]
         client = self._client_repository.get_by_id(client_id)
-        pubkey_content = client.certificate
 
         bsn = artifact_response.get_bsn(authorization_by_proxy=False)
         
@@ -65,7 +64,7 @@ class IAUserinfoService(UserinfoService):
         jwe = self._envelope_jwt_service.create_jwe(
             aud=client_id,
             declaration=declaration_jwt,
-            encryption_certificate=pubkey_content,
+            encryption_certificate=client.certificate,
             declaration_id=dezi_payload_static.verklaring_id,
             sub=subject_identifier,
         )

@@ -19,7 +19,7 @@ class DeclarationPayloadStatic(BaseModel):
     rol_code: str
     rol_naam: str
     rol_code_bron: str
-    revocatie_controle_uri: str
+    status_uri: str
 
 class DeclarationHeader(BaseModel):
     alg: str
@@ -46,7 +46,7 @@ class EnvelopeJWTPayload(BaseModel):
     exp: int
     iss: str
     aud: str
-    sub: str # TODO FIXME THIS WAS NOT IN THE SPECS, BUT COULD NOT BE LEFT OUT
+    sub: str
     loa_authn: str
     json_schema: str
     verklaring: str
