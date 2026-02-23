@@ -11,7 +11,7 @@
     "ansi-styles": "^6.2.3",
     "color-name": "^2.0.2",
     "redoc": "^2.5.0",
-    "swagger-ui-dist": "^5.31.0"
+    "swagger-ui-dist": "^5.31.2"
   },
   "devDependencies": {
     "sass": "^1.97.3",
