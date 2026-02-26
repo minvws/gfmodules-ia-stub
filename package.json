@@ -10,7 +10,7 @@
     "@minvws/nl-rdo-rijksoverheid-ui-theme": "^0.1.0",
     "ansi-styles": "^6.2.3",
     "color-name": "^2.0.2",
-    "redoc": "^2.5.0",
+    "minimatch": "^10.2.2",
     "swagger-ui-dist": "^5.31.2"
   },
   "devDependencies": {
