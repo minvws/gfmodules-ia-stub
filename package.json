@@ -14,7 +14,6 @@
     "swagger-ui-dist": "^5.32.0"
   },
   "devDependencies": {
-    "redoc": "^2.5.2",
     "sass": "^1.97.3",
     "vite": "^7.3.1",
     "vite-plugin-static-copy": "^3.2.0"
