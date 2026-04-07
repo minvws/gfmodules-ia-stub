@@ -11,15 +11,15 @@ readme = "README.md"
 nl-irealisatie-max-core = {git = "ssh://git@github.com/minvws/irealisatie-max-core.git", branch="main"}
 python = ">=3.11,<4.0"
 inject = ">=5.3.0,<6.0.0"
-uvicorn = "^0.42.0"
+uvicorn = "^0.44.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.1"
 pytest-cov = "^7.1.0"
-ruff = "^0.15.7"
+ruff = "^0.15.9"
 codespell = "^2.4.2"
 pip-audit = "^2.9.0"
-mypy = "1.19.1"
+mypy = "1.20.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
