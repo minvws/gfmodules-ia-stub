@@ -10,14 +10,14 @@
     "@minvws/nl-rdo-rijksoverheid-ui-theme": "^0.1.0",
     "ansi-styles": "^6.2.3",
     "color-name": "^2.0.2",
-    "minimatch": "^10.2.2",
+    "minimatch": "^10.2.5",
     "swagger-ui-dist": "^5.32.1"
   },
   "devDependencies": {
     "redoc": "^2.5.2",
-    "sass": "^1.98.0",
+    "sass": "^1.99.0",
     "vite": "^8.0.5",
-    "vite-plugin-static-copy": "^4.0.0"
+    "vite-plugin-static-copy": "^4.0.1"
   },
   "overrides": {
     "@redocly/openapi-core": {
