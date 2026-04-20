@@ -11,13 +11,13 @@
     "ansi-styles": "^6.2.3",
     "color-name": "^2.0.2",
     "minimatch": "^10.2.5",
-    "swagger-ui-dist": "^5.32.1"
+    "swagger-ui-dist": "^5.32.4"
   },
   "devDependencies": {
     "redoc": "^2.5.2",
     "sass": "^1.99.0",
-    "vite": "^8.0.5",
-    "vite-plugin-static-copy": "^4.0.1"
+    "vite": "^8.0.9",
+    "vite-plugin-static-copy": "^4.1.0"
   },
   "overrides": {
     "@redocly/openapi-core": {
