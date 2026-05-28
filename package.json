@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "redoc": "^2.5.2",
-    "sass": "^1.99.0",
-    "vite": "^8.0.13",
+    "sass": "^1.100.0",
+    "vite": "^8.0.14",
     "vite-plugin-static-copy": "^4.0.1"
   },
   "overrides": {
