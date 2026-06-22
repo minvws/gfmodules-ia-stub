@@ -20,7 +20,7 @@ jobs:
 
         steps:
             - name: Checkout repositories
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
               with:
                 fetch-depth: 0
   
@@ -45,7 +45,7 @@ jobs:
 
         steps:
           - name: Checkout repositories
-            uses: actions/checkout@v6
+            uses: actions/checkout@v7
 
           - name: Setup node
             uses: actions/setup-node@v6
@@ -71,7 +71,7 @@ jobs:
 
         steps:
             - name: Checkout repositories
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Run build action
               uses: minvws/action-python-poetry-install@v1
@@ -88,7 +88,7 @@ jobs:
 
         steps:
             - name: Checkout repositories
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Run build action
               uses: minvws/action-python-poetry-install@v1
@@ -105,7 +105,7 @@ jobs:
 
         steps:
             - name: Checkout repositories
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Run build action
               uses: minvws/action-python-poetry-install@v1
@@ -121,7 +121,7 @@ jobs:
 
         steps:
             - name: Checkout repositories
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Run build action
               uses: minvws/action-python-poetry-install@v1
@@ -139,7 +139,7 @@ jobs:
         needs: build
         steps:
             - name: Checkout repositories
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Run build action
               uses: minvws/action-python-poetry-install@v1
@@ -161,7 +161,7 @@ jobs:
         needs: test
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
               with:
                 fetch-depth: 0
             - name: Download coverage report
@@ -181,7 +181,7 @@ jobs:
           all_modified_files: ${{ steps.changed-files.outputs.all_modified_files }}
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
             - name: Get changed files
               id: changed-files
               uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47
@@ -200,7 +200,7 @@ jobs:
         needs: [build, lint, type-check, safety-check, spelling-check, test, detect_modified_files]
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
 
             - name: Set env
               run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV &&
