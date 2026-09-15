@@ -20,6 +20,8 @@ updates:
     commit-message:
       prefix: "deps(actions)"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 5
     groups:
       actions:
         patterns: ["actions/*"]
@@ -54,6 +56,8 @@ updates:
     commit-message:
       prefix: "deps(docker)"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 5
     groups:
       docker-patch-minor:
         update-types: [patch, minor]
