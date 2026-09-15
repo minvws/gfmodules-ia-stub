@@ -9,31 +9,77 @@ registries:
     token: "${{ secrets.REPO_READ_ONLY_TOKEN }}"
 
 updates:
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: / # scans workflows + actions
     schedule:
-      interval: "weekly"
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Amsterdam
+    labels: [dependencies, github-actions]
+    # assignees: [mgm-sec]
+    commit-message:
+      prefix: "deps(actions)"
+    open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns: ["*"]
 
-  # Maintain dependencies for pip
-  - package-ecosystem: "pip" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: pip
+    directory: / # Scans pyproject.toml + poetry.lock
     schedule:
-      interval: "weekly"
+      interval: weekly
+      day: monday
+      time: "05:15"
+      timezone: Europe/Amsterdam
+    labels: [dependencies, python]
+    # assignees: [mgm-sec]
+    commit-message:
+      prefix: "deps(python)"
+      include: scope
+    open-pull-requests-limit: 10
+    cooldown:
+      default-days: 5
+      semver-major-days: 14
     groups:
-      version-updates:
-        update-types: ["patch", "minor"]
-        patterns:
-          - "*"
-  
-  - package-ecosystem: "npm"
-    directory: "/"
-    registries:
-      - npm-github
+      python-patch-minor:
+        update-types: [patch, minor]
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directories: ["/", "/docker"]
     schedule:
-      interval: "weekly"
+      interval: weekly
+      day: monday
+      time: "05:30"
+      timezone: Europe/Amsterdam
+    labels: [dependencies, docker]
+    # assignees: [mgm-sec]
+    commit-message:
+      prefix: "deps(docker)"
+    open-pull-requests-limit: 5
     groups:
-      version-updates:
-        update-types: ["patch", "minor"]
-        patterns:
-          - "*"
+      docker-patch-minor:
+        update-types: [patch, minor]
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: /
+    registries: [npm-github]
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Amsterdam
+    labels: [dependencies, javascript]
+    # assignees: [mgm-sec]
+    commit-message:
+      prefix: "deps(npm)"
+    open-pull-requests-limit: 10
+    cooldown:
+      default-days: 5
+      semver-major-days: 14
+    groups:
+      npm-patch-minor:
+        update-types: [patch, minor]
+        patterns: ["*"]
