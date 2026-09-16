@@ -4,3 +4,4 @@
 app.conf
 .venv
 .npmrc
+static/version.json

@@ -94,6 +94,12 @@ COPY --chown=${APP_USER}:${APP_GROUP} ${LOCAL_SOURCE_DIR}/ ${PROJECT_DIR}
 COPY --from=builder --chown=${APP_USER}:${APP_GROUP} ${PROJECT_DIR}/node_modules ${PROJECT_DIR}/node_modules
 COPY --from=builder --chown=${APP_USER}:${APP_GROUP} ${PROJECT_DIR}/static/assets ${PROJECT_DIR}/static/assets
 
+# version.json is generated from build args so CI workspace artifacts never leak in
+ARG RELEASE_VERSION=dev
+ARG GIT_SHA=unknown
+RUN echo "{\"version\": \"${RELEASE_VERSION}\", \"git_ref\": \"${GIT_SHA}\"}" > ${PROJECT_DIR}/static/version.json \
+    && chown ${APP_USER}:${APP_GROUP} ${PROJECT_DIR}/static/version.json
+
 USER ${APP_USER}
 
 CMD ["tail", "-f", "/dev/null"]
