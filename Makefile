@@ -3,6 +3,8 @@ NEW_GID = 1000
 
 ifdef DOCKER
   RUN_PREFIX := docker compose run --rm app
+else ifdef POETRY
+  RUN_PREFIX := poetry run
 else
   RUN_PREFIX :=
 endif
@@ -36,9 +38,11 @@ run-scripts:  ## Run all setup scripts
 
 lint: ## Check for linting errors
 	$(RUN_PREFIX) ruff check
+	$(RUN_PREFIX) ruff format --diff
 
 lint-fix: ## Fix linting errors
 	$(RUN_PREFIX) ruff check --fix --show-fixes
+	$(RUN_PREFIX) ruff format
 
 type-check: ## Check for typing errors
 	$(RUN_PREFIX) mypy
