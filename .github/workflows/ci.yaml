@@ -23,7 +23,7 @@ jobs:
               uses: actions/checkout@v7
               with:
                 fetch-depth: 0
-  
+
             - name: Prepare environment
               run: |
                 sudo apt-get update
@@ -32,6 +32,8 @@ jobs:
             - name: Configure git to use GitHub token for private dependencies
               run: git config --global url."https://${{ secrets.REPO_READ_ONLY_TOKEN }}@github.com/".insteadOf "ssh://git@github.com/"
 
+            - name: Test clone max-core
+              run: git clone ssh://git@github.com/minvws/irealisatie-max-core.git
 
             - name: Run build action
               uses: minvws/action-python-poetry-install@v1
@@ -55,7 +57,7 @@ jobs:
               cache: "npm"
           - name: npm audit
             run: npm audit
-        
+
           - name: npm ci
             run: npm ci --ignore-scripts
             env:
