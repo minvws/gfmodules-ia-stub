@@ -1,5 +1,7 @@
 # I&A Stub
 
+Test commit for CI
+
 This app is the I&A Stub and is part of
 the 'Generieke Functies, lokalisatie en addressering' project of the Ministry of Health, Welfare and Sport of the Dutch government.
 
