@@ -32,6 +32,18 @@ jobs:
             - name: Configure git to use GitHub token for private dependencies
               run: git config --global url."https://${{ secrets.REPO_READ_ONLY_TOKEN }}@github.com/".insteadOf "ssh://git@github.com/"
 
+            - name: Setup node
+              uses: actions/setup-node@v6
+              with:
+                node-version: "22"
+                registry-url: "https://npm.pkg.github.com"
+                cache: "npm"
+
+            - name: npm ci
+              run: npm ci --ignore-scripts
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.REPO_READ_ONLY_TOKEN }}
+
             - name: Test clone max-core
               run: git clone ssh://git@github.com/minvws/irealisatie-max-core.git
 
