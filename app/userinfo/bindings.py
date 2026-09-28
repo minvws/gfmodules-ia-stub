@@ -14,12 +14,12 @@ class UserinfoBindings:
 
         binder.bind_to_constructor(
             UserinfoProvider,
-            lambda: UserinfoProvider(config.app.mocked_dezi_data_file_path),
+            lambda: UserinfoProvider(config.app.mocked_dezi_data_file_path),  # type: ignore # Ignore inject autoparams
         )
 
         binder.bind_to_constructor(
             UserinfoService,
-            lambda: IAUserinfoService(
+            lambda: IAUserinfoService(  # type: ignore # Ignore inject autoparams
                 userinfo_provider=inject.instance(UserinfoProvider),
                 declaration_jwt_service=inject.instance(DeclarationJWTService),
                 envelope_jwt_service=inject.instance(EnvelopeJWTService),

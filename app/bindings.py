@@ -60,7 +60,8 @@ class AppBindings:
 
         identities = json_from_file(self.__config.app.mocked_identities_file_path)
         binder.bind_to_constructor(
-            maxDigidMockProvider, lambda: DigidMockProvider(identities)
+            maxDigidMockProvider,
+            lambda: DigidMockProvider(identities),  # type: ignore # Ignore inject autoparams
         )
 
         UserinfoBindings.bind_bsn_userinfo_service(self.__config, binder)
