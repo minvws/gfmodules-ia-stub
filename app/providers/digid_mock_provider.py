@@ -8,6 +8,7 @@ from max_core.services.template_service import TemplateService
 from max_core.models.digid_mock_requests import DigiDMockRequest, DigiDMockCatchRequest
 from typing import Dict
 
+
 class DigidMockProvider:
     @autoparams("template_service")
     def __init__(self, identities: Dict[str, str], template_service: TemplateService):

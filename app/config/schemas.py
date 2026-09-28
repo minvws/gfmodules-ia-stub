@@ -9,6 +9,7 @@ class AppConfig(CoreAppConfig):
     mocked_dezi_data_file_path: str = Field(default="dezi_data.json")
     mocked_identities_file_path: str = Field(default="digid_mock_identities.json")
 
+
 class UvicornConfig(BaseModel):
     host: str
     port: int

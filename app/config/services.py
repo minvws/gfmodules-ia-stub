@@ -4,6 +4,7 @@ from typing import Any, Dict
 
 from app.config.schemas import Config
 
+
 class ConfigParser:
     DEFAULT_SECTION = "default"
 

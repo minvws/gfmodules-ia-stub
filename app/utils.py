@@ -11,6 +11,7 @@ def root_path(*args: str) -> str:
         os.path.join(os.path.dirname(__file__), "..", *args),
     )
 
+
 def load_config(config_file: str) -> Config:
     config_parser = ConfigParser(
         config_parser=configparser.ConfigParser(
@@ -19,6 +20,7 @@ def load_config(config_file: str) -> Config:
         config_path=root_path(config_file),
     )
     return config_parser.parse()
+
 
 def mocked_bsn_to_dezi_data(
     bsn: str,
