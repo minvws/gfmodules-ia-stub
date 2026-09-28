@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
+
 @router.get("/health")
 def health(
     health_checker: HealthCheckerCollection = Depends(HealthCheckerCollection),

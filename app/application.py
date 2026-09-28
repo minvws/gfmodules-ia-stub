@@ -47,7 +47,7 @@ def run() -> None:
     uvicorn.run(
         "app.application:uvicorn_app_factory",
         factory=True,
-        **kwargs_from_config(config.uvicorn)
+        **kwargs_from_config(config.uvicorn),
     )
 
 
@@ -91,5 +91,7 @@ def _load_version(file_path: str) -> str:
         version_data: Dict[str, Any] = json.load(file)
     version = version_data.get("version", "v0.0.0")
     if not isinstance(version, str):
-        raise ValueError("Version file is missing 'version' field or it is not a string")
+        raise ValueError(
+            "Version file is missing 'version' field or it is not a string"
+        )
     return version

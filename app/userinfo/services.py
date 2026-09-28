@@ -31,7 +31,6 @@ class UserinfoProvider:
         return DeclarationPayloadStatic(**data, verklaring_id=str(uuid4()))
 
 
-
 class IAUserinfoService(UserinfoService):
     CONTENT_TYPE = "application/jwt"
 
@@ -58,7 +57,7 @@ class IAUserinfoService(UserinfoService):
         client = self._client_repository.get_by_id(client_id)
 
         bsn = artifact_response.get_bsn(authorization_by_proxy=False)
-        
+
         dezi_payload_static = self._userinfo_provider.exchange_bsn(bsn)
         declaration_jwt = self._declaration_jwt_service.create_jwt(dezi_payload_static)
         jwe = self._envelope_jwt_service.create_jwe(

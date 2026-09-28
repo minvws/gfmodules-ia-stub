@@ -28,7 +28,9 @@ def index(
     content = LOGO
 
     try:
-        with open(Path(__file__).parent.parent.parent / config.app.version_file_path, "r") as file:
+        with open(
+            Path(__file__).parent.parent.parent / config.app.version_file_path, "r"
+        ) as file:
             data = json.load(file)
             content += "\nVersion: %s\nCommit: %s" % (data["version"], data["git_ref"])
     except (FileNotFoundError, json.JSONDecodeError) as e:
@@ -43,7 +45,9 @@ def version_json(
     config: Config = Depends(lambda: inject.instance(Config)),
 ) -> Response:
     try:
-        with open(Path(__file__).parent.parent.parent / config.app.version_file_path, "r") as file:
+        with open(
+            Path(__file__).parent.parent.parent / config.app.version_file_path, "r"
+        ) as file:
             content = file.read()
     except FileNotFoundError as e:
         logger.info("Version info could not be loaded: %s" % e)

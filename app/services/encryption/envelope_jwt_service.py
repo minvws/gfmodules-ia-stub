@@ -35,7 +35,9 @@ class EnvelopeJWTService:
         self.json_schema = json_schema
         self.loa_authn = loa_authn
 
-    def create_jwt(self, aud:str, declaration: str, declaration_id: str, sub: str) -> str:
+    def create_jwt(
+        self, aud: str, declaration: str, declaration_id: str, sub: str
+    ) -> str:
         logger.debug("Creating envelope JWT for verklaring_id=%s", declaration_id)
         jwt_header = EnvelopeJWTHeader(
             alg=JWT_ALG,
