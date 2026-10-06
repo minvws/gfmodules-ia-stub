@@ -2,8 +2,8 @@ import app.application
 
 
 def main() -> None:
-  app.application.run()
+    app.application.run()
 
 
 if __name__ == "__main__":
-  main()
+    main()

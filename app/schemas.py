@@ -1,11 +1,13 @@
 from pydantic import BaseModel
 
+
 class DeclarationPayloadDynamic(BaseModel):
     jti: str
     iss: str
     exp: int
     nbf: int
     json_schema: str
+
 
 class DeclarationPayloadStatic(BaseModel):
     loa_dezi: str
@@ -21,11 +23,13 @@ class DeclarationPayloadStatic(BaseModel):
     rol_code_bron: str
     status_uri: str
 
+
 class DeclarationHeader(BaseModel):
     alg: str
     kid: str
     jku: str
     typ: str
+
 
 class EnvelopeJWEHeader(BaseModel):
     alg: str
@@ -34,11 +38,13 @@ class EnvelopeJWEHeader(BaseModel):
     typ: str
     cty: str
 
+
 class EnvelopeJWTHeader(BaseModel):
     alg: str
     kid: str
     typ: str
     cty: str
+
 
 class EnvelopeJWTPayload(BaseModel):
     jti: str

@@ -7,7 +7,11 @@ from jwcrypto.jwt import JWT
 
 from max_core.models.certificate_with_jwk import CertificateWithJWK
 
-from app.schemas import DeclarationHeader, DeclarationPayloadDynamic, DeclarationPayloadStatic
+from app.schemas import (
+    DeclarationHeader,
+    DeclarationPayloadDynamic,
+    DeclarationPayloadStatic,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +34,10 @@ class DeclarationJWTService:
         self.json_schema = json_schema
 
     def create_jwt(self, static_payload: DeclarationPayloadStatic) -> str:
-        logger.debug("Creating declaration JWT for verklaring_id=%s", static_payload.verklaring_id)
+        logger.debug(
+            "Creating declaration JWT for verklaring_id=%s",
+            static_payload.verklaring_id,
+        )
         jwt_header = DeclarationHeader(
             alg="RS256",
             kid=self._signing_certificate.kid,

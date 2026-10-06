@@ -1,2 +1,4 @@
+system-git-client = true
+
 [installer]
 no-binary = ["xmlsec", "lxml"]
