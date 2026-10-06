@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build && mkdir -p static/assets && cp node_modules/swagger-ui-dist/swagger-ui-bundle.js static/assets/ && cp node_modules/swagger-ui-dist/swagger-ui.css static/assets/ && cp node_modules/redoc/bundles/redoc.standalone.js static/assets/"
   },
   "dependencies": {
     "@minvws/nl-rdo-rijksoverheid-ui-theme": "^0.1.0",
@@ -16,7 +16,6 @@
   "devDependencies": {
     "redoc": "^2.5.3",
     "sass": "^1.105.1",
-    "vite": "^8.0.16",
-    "vite-plugin-static-copy": "^4.1.1"
+    "vite": "^8.0.16"
   }
 }

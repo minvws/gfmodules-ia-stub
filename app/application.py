@@ -1,22 +1,21 @@
 import json
 import logging
-from typing import Any, Dict
+from typing import Any
 
 import inject
 import uvicorn
 from fastapi import FastAPI
-
 from max_core.application import setup_max_core
 
 from app.bindings import AppBindings
 from app.config.schemas import Config, UvicornConfig
 from app.docs import init_docs_module
-from app.utils import load_config
 from app.routers.default import router as default_router
 from app.routers.health import router as health_router
+from app.utils import load_config
 
 
-def kwargs_from_config(config: UvicornConfig) -> Dict[str, Any]:
+def kwargs_from_config(config: UvicornConfig) -> dict[str, Any]:
     kwargs = {
         "host": config.host,
         "port": config.port,
@@ -88,10 +87,8 @@ def _load_config_once() -> Config:
 
 def _load_version(file_path: str) -> str:
     with open(file_path, encoding="utf-8") as file:
-        version_data: Dict[str, Any] = json.load(file)
+        version_data: dict[str, Any] = json.load(file)
     version = version_data.get("version", "v0.0.0")
     if not isinstance(version, str):
-        raise ValueError(
-            "Version file is missing 'version' field or it is not a string"
-        )
+        raise TypeError("Version file is missing 'version' field or it is not a string")
     return version

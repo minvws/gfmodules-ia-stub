@@ -6,9 +6,9 @@ from max_core.models.authentication_context import AuthenticationContext
 from max_core.models.saml.artifact_response import ArtifactResponse
 from max_core.models.userinfo import Userinfo
 from max_core.services.auth_session.auth_session_encrypter import AuthSessionEncrypter
+from max_core.services.client_repository import ClientRepository
 from max_core.services.userinfo.userinfo_service import UserinfoService
 from max_core.storage.auth_session_cache import AuthSessionCache
-from max_core.services.client_repository import ClientRepository
 
 from app.schemas import DeclarationPayloadStatic
 from app.services.encryption.declaration_jwt_service import DeclarationJWTService

@@ -1,7 +1,6 @@
-from pydantic import BaseModel, Field
-
-from max_core.config.schemas import CoreConfig
 from max_core.config.schemas import AppConfig as CoreAppConfig
+from max_core.config.schemas import CoreConfig
+from pydantic import BaseModel, Field
 
 
 class AppConfig(CoreAppConfig):

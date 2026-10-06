@@ -1,8 +1,8 @@
 import logging
-from typing import Any
-from max_core.models.health_checker_collection import HealthCheckerCollection
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends
+from max_core.models.health_checker_collection import HealthCheckerCollection
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -10,7 +10,9 @@ router = APIRouter()
 
 @router.get("/health")
 def health(
-    health_checker: HealthCheckerCollection = Depends(HealthCheckerCollection),
+    health_checker: Annotated[
+        HealthCheckerCollection, Depends(HealthCheckerCollection)
+    ],
 ) -> dict[str, Any]:
     logger.info("Checking health")
 
