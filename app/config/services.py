@@ -1,6 +1,6 @@
 import configparser
 import os
-from typing import Any, Dict
+from typing import Any
 
 from app.config.schemas import Config
 
@@ -24,7 +24,7 @@ class ConfigParser:
 
         self.config_parser.read(self.config_path)
 
-        conf_values: Dict[str, Any] = {}
+        conf_values: dict[str, Any] = {}
 
         for section in self.config_parser.sections():
             section_values = dict(self.config_parser[section])

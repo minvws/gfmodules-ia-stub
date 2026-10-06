@@ -1,17 +1,15 @@
 import uuid
-from inject import autoparams
 
 from fastapi import Request
 from fastapi.responses import RedirectResponse, Response
-
+from inject import autoparams
+from max_core.models.digid_mock_requests import DigiDMockCatchRequest, DigiDMockRequest
 from max_core.services.template_service import TemplateService
-from max_core.models.digid_mock_requests import DigiDMockRequest, DigiDMockCatchRequest
-from typing import Dict
 
 
 class DigidMockProvider:
     @autoparams("template_service")
-    def __init__(self, identities: Dict[str, str], template_service: TemplateService):
+    def __init__(self, identities: dict[str, str], template_service: TemplateService):
         self._template_renderer = template_service.templates
         self._identities = identities
 

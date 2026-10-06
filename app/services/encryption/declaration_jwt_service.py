@@ -4,7 +4,6 @@ from uuid import uuid4
 
 from jwcrypto.jwk import JWK
 from jwcrypto.jwt import JWT
-
 from max_core.models.certificate_with_jwk import CertificateWithJWK
 
 from app.schemas import (

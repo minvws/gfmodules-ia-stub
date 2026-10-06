@@ -1,9 +1,11 @@
 import configparser
 import os
 from typing import Any
+
+from max_core.misc.utils import json_from_file
+
 from app.config.schemas import Config
 from app.config.services import ConfigParser
-from max_core.misc.utils import json_from_file
 
 
 def root_path(*args: str) -> str:

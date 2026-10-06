@@ -1,23 +1,22 @@
 from logging import Logger, getLogger
 
 from inject import Binder
-
 from max_core.bindings import MaxCoreBindings
-
-from app.config.schemas import Config
-from app.docs.bindings import DocsBindings
+from max_core.misc.utils import (
+    json_from_file,
+    load_certificate_with_jwk_from_path,
+    load_jwk,
+)
 from max_core.providers.digid_mock_provider import (
     DigidMockProvider as maxDigidMockProvider,
 )
+
+from app.config.schemas import Config
+from app.docs.bindings import DocsBindings
 from app.providers.digid_mock_provider import DigidMockProvider
 from app.services.encryption.declaration_jwt_service import DeclarationJWTService
 from app.services.encryption.envelope_jwt_service import EnvelopeJWTService
 from app.userinfo.bindings import UserinfoBindings
-from max_core.misc.utils import (
-    load_certificate_with_jwk_from_path,
-    load_jwk,
-    json_from_file,
-)
 
 
 class AppBindings:

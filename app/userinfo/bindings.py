@@ -1,8 +1,8 @@
-from inject import Binder
 import inject
+from inject import Binder
 from max_core.services.userinfo.userinfo_service import UserinfoService
-from app.config.schemas import Config
 
+from app.config.schemas import Config
 from app.services.encryption.declaration_jwt_service import DeclarationJWTService
 from app.services.encryption.envelope_jwt_service import EnvelopeJWTService
 from app.userinfo.services import IAUserinfoService, UserinfoProvider
