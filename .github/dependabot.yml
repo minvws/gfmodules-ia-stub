@@ -24,7 +24,7 @@ updates:
       default-days: 5
     groups:
       actions:
-        patterns: ["actions/*"]
+        patterns: ["*"]
 
   - package-ecosystem: pip
     directory: / # Scans pyproject.toml + poetry.lock
@@ -79,4 +79,21 @@ updates:
       semver-major-days: 14
     groups:
       npm-patch-minor:
+        update-types: [patch, minor]
+
+  - package-ecosystem: docker-compose
+    directories: ["/"]
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:30"
+      timezone: Europe/Amsterdam
+    labels: [dependencies, docker]
+    commit-message:
+      prefix: "deps(docker)"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 5
+    groups:
+      compose-patch-minor:
         update-types: [patch, minor]
