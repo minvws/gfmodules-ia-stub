@@ -22,7 +22,7 @@ services:
       - default
 
   redis:
-    image: redis:7.2.4
+    image: redis:8.10.2
     restart: 'no'
     ports:
       - '16379:16379'
@@ -32,7 +32,7 @@ services:
 
   redis-init:
     depends_on: [ 'redis' ]
-    image: redis:7.2.4
+    image: redis:8.10.2
     restart: 'no'
     command: 'redis-cli -h redis -p 16379 set max:primary_identity_provider tvs'
     networks:
